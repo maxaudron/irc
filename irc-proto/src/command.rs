@@ -10,7 +10,7 @@ use crate::response::Response;
 /// also includes commands from the
 /// [capabilities extension](https://tools.ietf.org/html/draft-mitchell-irc-capabilities-01).
 /// Additionally, this includes some common additional commands from popular IRCds.
-#[derive(Clone, Debug, PartialEq)]
+#[derive(Clone, Debug, Hash, Eq, PartialEq, Ord, PartialOrd)]
 pub enum Command {
     // 3.1 Connection Registration
     /// PASS :password
@@ -979,7 +979,7 @@ fn raw(cmd: &str, args: Vec<&str>) -> Command {
 }
 
 /// A list of all of the subcommands for the capabilities extension.
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Debug, Hash, Eq, PartialEq, Ord, PartialOrd)]
 pub enum CapSubCommand {
     /// Requests a list of the server's capabilities.
     LS,
@@ -1046,7 +1046,7 @@ impl FromStr for CapSubCommand {
 
 /// A list of all the subcommands for the
 /// [metadata extension](http://ircv3.net/specs/core/metadata-3.2.html).
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Debug, Hash, Eq, PartialEq, Ord, PartialOrd)]
 pub enum MetadataSubCommand {
     /// Looks up the value for some keys.
     GET,
@@ -1092,7 +1092,7 @@ impl FromStr for MetadataSubCommand {
 }
 
 /// [batch extension](http://ircv3.net/specs/extensions/batch-3.2.html).
-#[derive(Clone, Debug, PartialEq)]
+#[derive(Clone, Debug, Hash, Eq, PartialEq, Ord, PartialOrd)]
 pub enum BatchSubCommand {
     /// [NETSPLIT](http://ircv3.net/specs/extensions/batch/netsplit.html)
     NETSPLIT,

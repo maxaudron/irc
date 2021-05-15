@@ -9,7 +9,7 @@ macro_rules! make_response {
         /// [Modern docs](https://modern.ircdocs.horse/#numerics) (henceforth referred to as
         /// Modern). All commands are documented with their expected form from the RFC, and any
         /// useful, additional information about the response code.
-        #[derive(Clone, Copy, Debug, PartialEq)]
+        #[derive(Clone, Copy, Debug, Hash, Eq, PartialEq, Ord, PartialOrd)]
         #[repr(u16)]
         pub enum Response {
             $($(#[$attr])+ $variant = $value),+
